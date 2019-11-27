@@ -452,6 +452,20 @@
         </ObjectIntersectionOf>
     </EquivalentClasses>
     <EquivalentClasses>
+        <Class IRI="#Pizza"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasBase"/>
+            <Class IRI="#PizzaBase"/>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Pizza"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasTopping"/>
+            <Class IRI="#PizzaTopping"/>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
         <Class IRI="#PolishPizza"/>
         <ObjectIntersectionOf>
             <Class IRI="#Pizza"/>
@@ -845,20 +859,6 @@
         <Class IRI="#Food"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#Pizza"/>
-        <ObjectSomeValuesFrom>
-            <ObjectProperty IRI="#hasBase"/>
-            <Class IRI="#PizzaBase"/>
-        </ObjectSomeValuesFrom>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="#Pizza"/>
-        <ObjectSomeValuesFrom>
-            <ObjectProperty IRI="#hasTopping"/>
-            <Class IRI="#PizzaTopping"/>
-        </ObjectSomeValuesFrom>
-    </SubClassOf>
-    <SubClassOf>
         <Class IRI="#PizzaBase"/>
         <Class IRI="#Food"/>
     </SubClassOf>
@@ -1037,6 +1037,11 @@
     <DisjointClasses>
         <Class IRI="#MeatPizza"/>
         <Class IRI="#VegetarianPizza"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Pizza"/>
+        <Class IRI="#PizzaBase"/>
+        <Class IRI="#PizzaTopping"/>
     </DisjointClasses>
     <DisjointClasses>
         <Class IRI="#PizzaBase"/>
