@@ -50,6 +50,9 @@
         <Class IRI="#DeepPanBase"/>
     </Declaration>
     <Declaration>
+        <Class IRI="#DutchTopping"/>
+    </Declaration>
+    <Declaration>
         <Class IRI="#FatPizza"/>
     </Declaration>
     <Declaration>
@@ -60,6 +63,9 @@
     </Declaration>
     <Declaration>
         <Class IRI="#France"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#FrenchTopping"/>
     </Declaration>
     <Declaration>
         <Class IRI="#GarlicSouceTopping"/>
@@ -89,6 +95,9 @@
         <Class IRI="#Hot"/>
     </Declaration>
     <Declaration>
+        <Class IRI="#ItalianTopping"/>
+    </Declaration>
+    <Declaration>
         <Class IRI="#ItalianoPizza"/>
     </Declaration>
     <Declaration>
@@ -102,6 +111,9 @@
     </Declaration>
     <Declaration>
         <Class IRI="#KoreanPizza"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#KoreanTopping"/>
     </Declaration>
     <Declaration>
         <Class IRI="#KoreanoPizza"/>
@@ -162,6 +174,12 @@
     </Declaration>
     <Declaration>
         <Class IRI="#Poland"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#PolishPizza"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#PolishTopping"/>
     </Declaration>
     <Declaration>
         <Class IRI="#SalamiTopping"/>
@@ -253,6 +271,10 @@
         <Class IRI="#CheesyPizza"/>
         <ObjectIntersectionOf>
             <Class IRI="#Pizza"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasTopping"/>
+                <Class IRI="#CheeseTopping"/>
+            </ObjectSomeValuesFrom>
             <ObjectAllValuesFrom>
                 <ObjectProperty IRI="#hasTopping"/>
                 <Class IRI="#CheeseTopping"/>
@@ -270,18 +292,13 @@
         </ObjectUnionOf>
     </EquivalentClasses>
     <EquivalentClasses>
-        <Class IRI="#FatPizza"/>
+        <Class IRI="#DutchTopping"/>
         <ObjectIntersectionOf>
-            <Class IRI="#Pizza"/>
-            <DataSomeValuesFrom>
-                <DataProperty IRI="#hasCaloricContentValue"/>
-                <DatatypeRestriction>
-                    <Datatype abbreviatedIRI="xsd:nonNegativeInteger"/>
-                    <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#minInclusive">
-                        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">500</Literal>
-                    </FacetRestriction>
-                </DatatypeRestriction>
-            </DataSomeValuesFrom>
+            <Class IRI="#PizzaTopping"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#originatesFrom"/>
+                <Class IRI="#Netherlands"/>
+            </ObjectSomeValuesFrom>
         </ObjectIntersectionOf>
     </EquivalentClasses>
     <EquivalentClasses>
@@ -296,6 +313,26 @@
                 <ObjectProperty IRI="#hasTopping"/>
                 <Class IRI="#CheeseTopping"/>
             </ObjectMinCardinality>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#FrenchTopping"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#PizzaTopping"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#originatesFrom"/>
+                <Class IRI="#France"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#ItalianTopping"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#PizzaTopping"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#originatesFrom"/>
+                <Class IRI="#Italy"/>
+            </ObjectSomeValuesFrom>
         </ObjectIntersectionOf>
     </EquivalentClasses>
     <EquivalentClasses>
@@ -321,13 +358,7 @@
             </ObjectComplementOf>
             <ObjectSomeValuesFrom>
                 <ObjectProperty IRI="#hasTopping"/>
-                <ObjectIntersectionOf>
-                    <Class IRI="#PizzaTopping"/>
-                    <ObjectSomeValuesFrom>
-                        <ObjectProperty IRI="#originatesFrom"/>
-                        <Class IRI="#Italy"/>
-                    </ObjectSomeValuesFrom>
-                </ObjectIntersectionOf>
+                <Class IRI="#ItalianTopping"/>
             </ObjectSomeValuesFrom>
         </ObjectIntersectionOf>
     </EquivalentClasses>
@@ -353,19 +384,23 @@
         </ObjectIntersectionOf>
     </EquivalentClasses>
     <EquivalentClasses>
+        <Class IRI="#KoreanTopping"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#PizzaTopping"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#originatesFrom"/>
+                <Class IRI="#Korea"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
         <Class IRI="#KoreanoPizza"/>
         <ObjectIntersectionOf>
             <Class IRI="#Pizza"/>
-            <ObjectAllValuesFrom>
+            <ObjectSomeValuesFrom>
                 <ObjectProperty IRI="#hasTopping"/>
-                <ObjectIntersectionOf>
-                    <Class IRI="#PizzaTopping"/>
-                    <ObjectSomeValuesFrom>
-                        <ObjectProperty IRI="#originatesFrom"/>
-                        <Class IRI="#Korea"/>
-                    </ObjectSomeValuesFrom>
-                </ObjectIntersectionOf>
-            </ObjectAllValuesFrom>
+                <Class IRI="#KoreanTopping"/>
+            </ObjectSomeValuesFrom>
         </ObjectIntersectionOf>
     </EquivalentClasses>
     <EquivalentClasses>
@@ -413,6 +448,26 @@
             <ObjectSomeValuesFrom>
                 <ObjectProperty IRI="#hasTopping"/>
                 <Class IRI="#TomatoTopping"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#PolishPizza"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Pizza"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasTopping"/>
+                <Class IRI="#PolishTopping"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#PolishTopping"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#PizzaTopping"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#originatesFrom"/>
+                <Class IRI="#Poland"/>
             </ObjectSomeValuesFrom>
         </ObjectIntersectionOf>
     </EquivalentClasses>
@@ -540,6 +595,10 @@
         <Class IRI="#PizzaBase"/>
     </SubClassOf>
     <SubClassOf>
+        <Class IRI="#DutchTopping"/>
+        <Class IRI="#PizzaTopping"/>
+    </SubClassOf>
+    <SubClassOf>
         <Class IRI="#FatPizza"/>
         <Class IRI="#Pizza"/>
     </SubClassOf>
@@ -550,6 +609,10 @@
     <SubClassOf>
         <Class IRI="#France"/>
         <Class IRI="#Country"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#FrenchTopping"/>
+        <Class IRI="#PizzaTopping"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#GarlicSouceTopping"/>
@@ -630,6 +693,10 @@
         <Class IRI="#Value"/>
     </SubClassOf>
     <SubClassOf>
+        <Class IRI="#ItalianTopping"/>
+        <Class IRI="#PizzaTopping"/>
+    </SubClassOf>
+    <SubClassOf>
         <Class IRI="#ItalianoPizza"/>
         <Class IRI="#Pizza"/>
     </SubClassOf>
@@ -648,6 +715,10 @@
     <SubClassOf>
         <Class IRI="#KoreanPizza"/>
         <Class IRI="#NamedPizza"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#KoreanTopping"/>
+        <Class IRI="#PizzaTopping"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#KoreanoPizza"/>
@@ -788,13 +859,6 @@
         </ObjectSomeValuesFrom>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#Pizza"/>
-        <DataSomeValuesFrom>
-            <DataProperty IRI="#hasCaloricContentValue"/>
-            <Datatype abbreviatedIRI="xsd:nonNegativeInteger"/>
-        </DataSomeValuesFrom>
-    </SubClassOf>
-    <SubClassOf>
         <Class IRI="#PizzaBase"/>
         <Class IRI="#Food"/>
     </SubClassOf>
@@ -805,6 +869,14 @@
     <SubClassOf>
         <Class IRI="#Poland"/>
         <Class IRI="#Country"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#PolishPizza"/>
+        <Class IRI="#Pizza"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#PolishTopping"/>
+        <Class IRI="#PizzaTopping"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#SalamiTopping"/>
@@ -1093,7 +1165,7 @@
     </DataPropertyDomain>
     <DataPropertyRange>
         <DataProperty IRI="#hasCaloricContentValue"/>
-        <Datatype abbreviatedIRI="xsd:positiveInteger"/>
+        <Datatype abbreviatedIRI="xsd:nonNegativeInteger"/>
     </DataPropertyRange>
 </Ontology>
 
