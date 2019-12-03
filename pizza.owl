@@ -250,6 +250,9 @@
     <Declaration>
         <NamedIndividual IRI="#Margheritta"/>
     </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#OilyAmericana"/>
+    </Declaration>
     <EquivalentClasses>
         <Class IRI="#AmericanaPizza"/>
         <ObjectIntersectionOf>
@@ -299,6 +302,21 @@
                 <ObjectProperty IRI="#originatesFrom"/>
                 <Class IRI="#Netherlands"/>
             </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#FatPizza"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Pizza"/>
+            <DataSomeValuesFrom>
+                <DataProperty IRI="#hasCaloricContentValue"/>
+                <DatatypeRestriction>
+                    <Datatype abbreviatedIRI="xsd:nonNegativeInteger"/>
+                    <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#minInclusive">
+                        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">500</Literal>
+                    </FacetRestriction>
+                </DatatypeRestriction>
+            </DataSomeValuesFrom>
         </ObjectIntersectionOf>
     </EquivalentClasses>
     <EquivalentClasses>
@@ -613,10 +631,6 @@
         <Class IRI="#PizzaTopping"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#FatPizza"/>
-        <Class IRI="#Pizza"/>
-    </SubClassOf>
-    <SubClassOf>
         <Class IRI="#FourCheesePizza"/>
         <Class IRI="#NamedPizza"/>
     </SubClassOf>
@@ -859,6 +873,13 @@
         <Class IRI="#Food"/>
     </SubClassOf>
     <SubClassOf>
+        <Class IRI="#Pizza"/>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#hasCaloricContentValue"/>
+            <Datatype abbreviatedIRI="xsd:nonNegativeInteger"/>
+        </DataSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
         <Class IRI="#PizzaBase"/>
         <Class IRI="#Food"/>
     </SubClassOf>
@@ -1051,10 +1072,19 @@
         <Class IRI="#MargheritaPizza"/>
         <NamedIndividual IRI="#Margheritta"/>
     </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#AmericanaPizza"/>
+        <NamedIndividual IRI="#OilyAmericana"/>
+    </ClassAssertion>
     <DataPropertyAssertion>
         <DataProperty IRI="#hasCaloricContentValue"/>
         <NamedIndividual IRI="#Margheritta"/>
         <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#positiveInteger">150</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasCaloricContentValue"/>
+        <NamedIndividual IRI="#OilyAmericana"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">723</Literal>
     </DataPropertyAssertion>
     <SubObjectPropertyOf>
         <ObjectProperty IRI="#hasBase"/>
