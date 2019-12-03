@@ -1,0 +1,741 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.w3.org/2011/12/beer.owl#"
+     xml:base="http://www.w3.org/2011/12/beer.owl"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:jms="http://jena.hpl.hp.com/2003/08/jms#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:rss="http://purl.org/rss/1.0/"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:beer="file:/Users/aleksandra/Projects/SPD/beer.owl#"
+     xmlns:daml="http://www.daml.org/2001/03/daml+oil#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+    <owl:Ontology rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl">
+        <rdfs:comment>
+    	An ontology that models types of beer and brewers/brands.
+	http://purl.org/net/ontology/beer.owl
+	
+	WordNet		beer -- (a general name for alcoholic beverages made by fermenting a cereal (or mixture of cereals) flavored with hops)
+			http://www.cogsci.princeton.edu/cgi-bin/webwn2.0?stage=1&amp;word=beer
+	
+	History		Based on http://www.csd.abdn.ac.uk/research/AgentCities/ontologies/beer#
+	
+    	2004-04-02	* Converted to OWL-Lite by David and http://www.mindswap.org/2002/owl.html
+			* Changed concept hierarchy of beers: added top/bottom-fermention.
+	2004-08-24	* Removed FuzzyMeasure.
+			* Added some German labels, a Property, some Instances.
+
+	@todo		* revamp completely, use http://de.wikipedia.org/wiki/Bier
+			* model constraints
+			* How about some instances? See http://brewery.org/brewery/library/AlClbinger.html  !!
+			* Percentage as subclass of float?
+			
+	Hints		* model purity requirements (german purity law): barley/wheat (kindof grain): malt, hops, water (and yeast (yet unknown around 1516))
+			* For the preparation of beer, only malt, hops, yeast and water can be used.
+			* Typically, beers are made from water, malted barley, hops, fermented by yeast. The addition of other flavorings or sources of sugar is not uncommon.
+    </rdfs:comment>
+        <rdfs:label>Beer Ontology, OWL Lite</rdfs:label>
+        <owl:versionInfo>beer_v0.4.owl, based on http://purl.org/net/ontology/beer_v0.3.owl</owl:versionInfo>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.w3.org/2011/12/beer.owl#brewedBy -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2011/12/beer.owl#brewedBy"/>
+    
+
+
+    <!-- http://www.w3.org/2011/12/beer.owl#hasAlcoholicContent -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2011/12/beer.owl#hasAlcoholicContent"/>
+    
+
+
+    <!-- http://www.w3.org/2011/12/beer.owl#locatedIn -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2011/12/beer.owl#locatedIn"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#awardCategory -->
+
+    <owl:ObjectProperty rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#awardCategory">
+        <rdfs:domain rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#Award"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#awarded -->
+
+    <owl:ObjectProperty rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#awarded">
+        <rdfs:domain rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#Beer"/>
+        <rdfs:range rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#Award"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#awardedAt -->
+
+    <owl:ObjectProperty rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#awardedAt">
+        <rdfs:domain rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#Award"/>
+        <rdfs:range rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#Festival"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#brewedBy -->
+
+    <owl:ObjectProperty rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#brewedBy">
+        <owl:inverseOf rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#brews"/>
+        <rdfs:domain rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#Beer"/>
+        <rdfs:range rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#Brewery"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#brews -->
+
+    <owl:ObjectProperty rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#brews">
+        <rdfs:domain rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#Brewery"/>
+        <rdfs:range rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#Beer"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#locatedIn -->
+
+    <owl:ObjectProperty rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#locatedIn">
+        <rdfs:domain rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#Brewery"/>
+        <rdfs:range rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#Region"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#madeFrom -->
+
+    <owl:ObjectProperty rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#madeFrom">
+        <rdfs:domain rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#Beer"/>
+        <rdfs:range rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#Ingredient"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#maltedTo -->
+
+    <owl:ObjectProperty rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#maltedTo">
+        <rdfs:domain rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#Grain"/>
+        <rdfs:range rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#Malt"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#sponsors -->
+
+    <owl:ObjectProperty rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#sponsors">
+        <rdfs:domain rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#Association"/>
+        <rdfs:range rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#Festival"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#hasAlcoholicContent -->
+
+    <owl:DatatypeProperty rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#hasAlcoholicContent">
+        <rdfs:subPropertyOf rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#hasContent"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#Beer"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#hasContent -->
+
+    <owl:DatatypeProperty rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#hasContent">
+        <rdfs:domain rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#Beer"/>
+        <rdfs:comment>only for test purposes</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#hasOriginalWortContent -->
+
+    <owl:DatatypeProperty rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#hasOriginalWortContent">
+        <rdfs:subPropertyOf rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#hasContent"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#Beer"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#Ale -->
+
+    <owl:Class rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#Ale">
+        <rdfs:subClassOf rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#TopFermentedBeer"/>
+    </owl:Class>
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#Association -->
+
+    <owl:Class rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#Association">
+        <rdfs:subClassOf rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#Organization"/>
+    </owl:Class>
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#Award -->
+
+    <owl:Class rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#Award"/>
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#Barley -->
+
+    <owl:Class rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#Barley">
+        <rdfs:subClassOf rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#Grain"/>
+        <rdfs:label xml:lang="de">Gerste</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#Beer -->
+
+    <owl:Class rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#Beer"/>
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#Bitter -->
+
+    <owl:Class rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#Bitter">
+        <rdfs:subClassOf rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#Ale"/>
+    </owl:Class>
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#Black -->
+
+    <owl:Class rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#Black">
+        <rdfs:subClassOf rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#Malt"/>
+    </owl:Class>
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#BottomFermentedBeer -->
+
+    <owl:Class rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#BottomFermentedBeer">
+        <rdfs:subClassOf rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#Beer"/>
+        <rdfs:label xml:lang="de">Untergaeriges Bier</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#Brewery -->
+
+    <owl:Class rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#Brewery">
+        <rdfs:subClassOf rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#Organization"/>
+    </owl:Class>
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#BrownAle -->
+
+    <owl:Class rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#BrownAle">
+        <rdfs:subClassOf rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#Ale"/>
+    </owl:Class>
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#Caramel -->
+
+    <owl:Class rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#Caramel">
+        <rdfs:subClassOf rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#Malt"/>
+    </owl:Class>
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#Carapils -->
+
+    <owl:Class rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#Carapils">
+        <rdfs:subClassOf rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#Malt"/>
+    </owl:Class>
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#Cascade -->
+
+    <owl:Class rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#Cascade">
+        <rdfs:subClassOf rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#Hops"/>
+    </owl:Class>
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#Chinook -->
+
+    <owl:Class rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#Chinook">
+        <rdfs:subClassOf rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#Hops"/>
+    </owl:Class>
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#Chocolate -->
+
+    <owl:Class rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#Chocolate">
+        <rdfs:subClassOf rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#Malt"/>
+    </owl:Class>
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#DryStout -->
+
+    <owl:Class rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#DryStout">
+        <rdfs:subClassOf rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#Stout"/>
+    </owl:Class>
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#Festival -->
+
+    <owl:Class rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#Festival"/>
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#Galena -->
+
+    <owl:Class rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#Galena">
+        <rdfs:subClassOf rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#Hops"/>
+    </owl:Class>
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#Grain -->
+
+    <owl:Class rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#Grain">
+        <rdfs:subClassOf rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#Ingredient"/>
+        <rdfs:label xml:lang="de">Getreide</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#Hallertau -->
+
+    <owl:Class rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#Hallertau">
+        <rdfs:subClassOf rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#Hops"/>
+    </owl:Class>
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#Hops -->
+
+    <owl:Class rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#Hops">
+        <rdfs:subClassOf rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#Ingredient"/>
+        <rdfs:label xml:lang="de">Hopfen</rdfs:label>
+        <rdfs:label xml:lang="en">Hops</rdfs:label>
+        <rdfs:label xml:lang="en">Vine</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#ImperialStout -->
+
+    <owl:Class rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#ImperialStout">
+        <rdfs:subClassOf rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#Stout"/>
+    </owl:Class>
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#IndiaPaleAle -->
+
+    <owl:Class rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#IndiaPaleAle">
+        <rdfs:subClassOf rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#Ale"/>
+    </owl:Class>
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#Ingredient -->
+
+    <owl:Class rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#Ingredient"/>
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#KentGoldings -->
+
+    <owl:Class rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#KentGoldings">
+        <rdfs:subClassOf rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#Hops"/>
+    </owl:Class>
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#Lager -->
+
+    <owl:Class rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#Lager">
+        <rdfs:subClassOf rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#BottomFermentedBeer"/>
+        <rdfs:label xml:lang="de">Helles</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#Malt -->
+
+    <owl:Class rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#Malt">
+        <rdfs:subClassOf rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#Ingredient"/>
+        <rdfs:label xml:lang="de">Malz</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#Microbrewery -->
+
+    <owl:Class rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#Microbrewery">
+        <rdfs:subClassOf rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#Brewery"/>
+    </owl:Class>
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#Mild -->
+
+    <owl:Class rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#Mild">
+        <rdfs:subClassOf rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#Ale"/>
+    </owl:Class>
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#MountHood -->
+
+    <owl:Class rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#MountHood">
+        <rdfs:subClassOf rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#Hops"/>
+    </owl:Class>
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#Munich -->
+
+    <owl:Class rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#Munich">
+        <rdfs:subClassOf rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#Malt"/>
+    </owl:Class>
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#Organization -->
+
+    <owl:Class rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#Organization"/>
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#Pale -->
+
+    <owl:Class rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#Pale">
+        <rdfs:subClassOf rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#Malt"/>
+    </owl:Class>
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#PaleAle -->
+
+    <owl:Class rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#PaleAle">
+        <rdfs:subClassOf rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#Ale"/>
+    </owl:Class>
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#Perle -->
+
+    <owl:Class rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#Perle">
+        <rdfs:subClassOf rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#Hops"/>
+    </owl:Class>
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#Pilsner -->
+
+    <owl:Class rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#Pilsner">
+        <rdfs:subClassOf rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#BottomFermentedBeer"/>
+        <rdfs:label xml:lang="de">Pils</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#Porter -->
+
+    <owl:Class rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#Porter">
+        <rdfs:subClassOf rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#TopFermentedBeer"/>
+    </owl:Class>
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#Region -->
+
+    <owl:Class rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#Region"/>
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#Saaz -->
+
+    <owl:Class rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#Saaz">
+        <rdfs:subClassOf rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#Hops"/>
+    </owl:Class>
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#ScotchAle -->
+
+    <owl:Class rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#ScotchAle">
+        <rdfs:subClassOf rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#Ale"/>
+    </owl:Class>
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#Stout -->
+
+    <owl:Class rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#Stout">
+        <rdfs:subClassOf rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#Porter"/>
+    </owl:Class>
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#SweetStout -->
+
+    <owl:Class rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#SweetStout">
+        <rdfs:subClassOf rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#Stout"/>
+    </owl:Class>
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#Tettnang -->
+
+    <owl:Class rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#Tettnang">
+        <rdfs:subClassOf rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#Hops"/>
+    </owl:Class>
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#TopFermentedBeer -->
+
+    <owl:Class rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#TopFermentedBeer">
+        <rdfs:subClassOf rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#Beer"/>
+        <rdfs:label xml:lang="de">Obergaeriges Bier</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#Town -->
+
+    <owl:Class rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#Town">
+        <rdfs:subClassOf rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#Region"/>
+    </owl:Class>
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#Water -->
+
+    <owl:Class rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#Water">
+        <rdfs:subClassOf rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#Ingredient"/>
+    </owl:Class>
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#Wheat -->
+
+    <owl:Class rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#Wheat">
+        <rdfs:subClassOf rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#Grain"/>
+        <rdfs:label xml:lang="de">Weizen</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#White -->
+
+    <owl:Class rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#White">
+        <rdfs:subClassOf rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#TopFermentedBeer"/>
+        <rdfs:comment xml:lang="de">Weissbier</rdfs:comment>
+        <rdfs:label xml:lang="de">Weizenbier</rdfs:label>
+        <rdfs:label xml:lang="en">Wheat Beer</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#Willamette -->
+
+    <owl:Class rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#Willamette">
+        <rdfs:subClassOf rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#Hops"/>
+    </owl:Class>
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#Yeast -->
+
+    <owl:Class rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#Yeast">
+        <rdfs:subClassOf rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#Ingredient"/>
+        <rdfs:label xml:lang="de">Hefe</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/2011/12/beer.owl#Ale -->
+
+    <owl:Class rdf:about="http://www.w3.org/2011/12/beer.owl#Ale"/>
+    
+
+
+    <!-- http://www.w3.org/2011/12/beer.owl#Bock -->
+
+    <owl:Class rdf:about="http://www.w3.org/2011/12/beer.owl#Bock">
+        <rdfs:subClassOf rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#BottomFermentedBeer"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/2011/12/beer.owl#Brewery -->
+
+    <owl:Class rdf:about="http://www.w3.org/2011/12/beer.owl#Brewery"/>
+    
+
+
+    <!-- http://www.w3.org/2011/12/beer.owl#Town -->
+
+    <owl:Class rdf:about="http://www.w3.org/2011/12/beer.owl#Town"/>
+    
+
+
+    <!-- http://www.w3.org/2011/12/beer.owl#White -->
+
+    <owl:Class rdf:about="http://www.w3.org/2011/12/beer.owl#White"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#Boddingtons -->
+
+    <owl:NamedIndividual rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#Boddingtons">
+        <rdf:type rdf:resource="http://www.w3.org/2011/12/beer.owl#Ale"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#Grafentrunk -->
+
+    <owl:NamedIndividual rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#Grafentrunk">
+        <rdf:type rdf:resource="http://www.w3.org/2011/12/beer.owl#Bock"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#Hoegaarden -->
+
+    <owl:NamedIndividual rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#Hoegaarden">
+        <rdf:type rdf:resource="http://www.w3.org/2011/12/beer.owl#White"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#KriegerBrauerei -->
+
+    <owl:NamedIndividual rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#KriegerBrauerei">
+        <rdf:type rdf:resource="http://www.w3.org/2011/12/beer.owl#Brewery"/>
+        <locatedIn rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#LandauIsar"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#LandauIsar -->
+
+    <owl:NamedIndividual rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#LandauIsar">
+        <rdf:type rdf:resource="http://www.w3.org/2011/12/beer.owl#Town"/>
+        <rdfs:comment>Landau an der Isar, Germany</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#Paulaner -->
+
+    <owl:NamedIndividual rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#Paulaner">
+        <rdf:type rdf:resource="http://www.w3.org/2011/12/beer.owl#White"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- file:/Users/aleksandra/Projects/SPD/beer.owl#Tetleys -->
+
+    <owl:NamedIndividual rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#Tetleys">
+        <rdf:type rdf:resource="http://www.w3.org/2011/12/beer.owl#Ale"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotations
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description rdf:about="file:/Users/aleksandra/Projects/SPD/beer.owl#Krieger">
+        <rdfs:label xml:lang="de">Krieger Hell</rdfs:label>
+        <brewedBy rdf:resource="file:/Users/aleksandra/Projects/SPD/beer.owl#KriegerBrauerei"/>
+        <hasAlcoholicContent>4.5</hasAlcoholicContent>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+
